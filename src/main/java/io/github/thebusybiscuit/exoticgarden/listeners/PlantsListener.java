@@ -33,6 +33,7 @@ import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
+import dev.cworldstar.utils.SkullCreator;
 import io.github.thebusybiscuit.exoticgarden.Berry;
 import io.github.thebusybiscuit.exoticgarden.ExoticGarden;
 import io.github.thebusybiscuit.exoticgarden.PlantType;
@@ -43,8 +44,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
@@ -191,16 +190,14 @@ public class PlantsListener implements Listener {
                         Rotatable rotatable = (Rotatable) blockAbove.getBlockData();
                         rotatable.setRotation(faces[ThreadLocalRandom.current().nextInt(faces.length)]);
                         blockAbove.setBlockData(rotatable);
-
-                        PlayerHead.setSkin(blockAbove, PlayerSkin.fromHashCode(berry.getTexture()), true);
+                        SkullCreator.loadToBlockFromHash(blockAbove, berry.getTexture());
                         break;
                     default:
                         e.getLocation().getBlock().setType(Material.PLAYER_HEAD);
                         Rotatable s = (Rotatable) e.getLocation().getBlock().getBlockData();
                         s.setRotation(faces[ThreadLocalRandom.current().nextInt(faces.length)]);
                         e.getLocation().getBlock().setBlockData(s);
-
-                        PlayerHead.setSkin(e.getLocation().getBlock(), PlayerSkin.fromHashCode(berry.getTexture()), true);
+                        SkullCreator.loadToBlockFromHash(e.getLocation().getBlock(), berry.getTexture());
                         break;
                     }
 
@@ -243,7 +240,8 @@ public class PlantsListener implements Listener {
                         Rotatable s = (Rotatable) current.getBlockData();
                         s.setRotation(faces[random.nextInt(faces.length)]);
                         current.setBlockData(s);
-                        PlayerHead.setSkin(current, PlayerSkin.fromHashCode(berry.getTexture()), true);
+                        SkullCreator.loadToBlockFromHash(current, berry.getTexture());
+
                     }
                     else {
                         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
@@ -251,7 +249,7 @@ public class PlantsListener implements Listener {
                             Rotatable s = (Rotatable) current.getBlockData();
                             s.setRotation(faces[random.nextInt(faces.length)]);
                             current.setBlockData(s);
-                            PlayerHead.setSkin(current, PlayerSkin.fromHashCode(berry.getTexture()), true);
+                            SkullCreator.loadToBlockFromHash(current, berry.getTexture());
                         });
                     }
                     break;
@@ -262,7 +260,7 @@ public class PlantsListener implements Listener {
                         Rotatable s = (Rotatable) current.getBlockData();
                         s.setRotation(faces[random.nextInt(faces.length)]);
                         current.setBlockData(s);
-                        PlayerHead.setSkin(current, PlayerSkin.fromHashCode(berry.getTexture()), true);
+                        SkullCreator.loadToBlockFromHash(current, berry.getTexture());
                     }
                     else {
                         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
@@ -272,7 +270,7 @@ public class PlantsListener implements Listener {
                             Rotatable ss = (Rotatable) current.getRelative(BlockFace.UP).getBlockData();
                             ss.setRotation(faces[random.nextInt(faces.length)]);
                             current.getRelative(BlockFace.UP).setBlockData(ss);
-                            PlayerHead.setSkin(current.getRelative(BlockFace.UP), PlayerSkin.fromHashCode(berry.getTexture()), true);
+                            SkullCreator.loadToBlockFromHash(current.getRelative(BlockFace.UP), berry.getTexture());
                         });
                     }
                     break;

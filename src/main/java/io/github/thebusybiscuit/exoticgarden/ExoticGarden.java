@@ -24,10 +24,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.food.Juice;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
-import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 import org.bukkit.ChatColor;
@@ -43,6 +39,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import dev.cworldstar.utils.SkullCreator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -98,11 +96,11 @@ public class ExoticGarden extends JavaPlugin implements SlimefunAddon {
     }
 
     private void registerItems() {
-        nestedItemGroup = new NestedItemGroup(new NamespacedKey(this, "parent_category"), CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("847d73a91b52393f2c27e453fb89ab3d784054d414e390d58abd22512edd2b")), "&aExotic Garden"));
-        mainItemGroup = new SubItemGroup(new NamespacedKey(this, "plants_and_fruits"), nestedItemGroup, CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("a5a5c4a0a16dabc9b1ec72fc83e23ac15d0197de61b138babca7c8a29c820")), "&aExotic Garden - Plants and Fruits"));
-        miscItemGroup = new SubItemGroup(new NamespacedKey(this, "misc"), nestedItemGroup, CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("606be2df2122344bda479feece365ee0e9d5da276afa0e8ce8d848f373dd131")), "&aExotic Garden - Ingredients and Tools"));
-        foodItemGroup = new SubItemGroup(new NamespacedKey(this, "food"), nestedItemGroup, CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("a14216d10714082bbe3f412423e6b19232352f4d64f9aca3913cb46318d3ed")), "&aExotic Garden - Food"));
-        drinksItemGroup = new SubItemGroup(new NamespacedKey(this, "drinks"), nestedItemGroup, CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("2a8f1f70e85825607d28edce1a2ad4506e732b4a5345a5ea6e807c4b313e88")), "&aExotic Garden - Drinks"));
+        nestedItemGroup = new NestedItemGroup(new NamespacedKey(this, "parent_category"), CustomItemStack.create(SkullCreator.skullFromHash("847d73a91b52393f2c27e453fb89ab3d784054d414e390d58abd22512edd2b"), "&aExotic Garden"));
+        mainItemGroup = new SubItemGroup(new NamespacedKey(this, "plants_and_fruits"), nestedItemGroup, CustomItemStack.create(SkullCreator.skullFromHash("a5a5c4a0a16dabc9b1ec72fc83e23ac15d0197de61b138babca7c8a29c820"), "&aExotic Garden - Plants and Fruits"));
+        miscItemGroup = new SubItemGroup(new NamespacedKey(this, "misc"), nestedItemGroup, CustomItemStack.create(SkullCreator.skullFromHash("606be2df2122344bda479feece365ee0e9d5da276afa0e8ce8d848f373dd131"), "&aExotic Garden - Ingredients and Tools"));
+        foodItemGroup = new SubItemGroup(new NamespacedKey(this, "food"), nestedItemGroup, CustomItemStack.create(SkullCreator.skullFromHash("a14216d10714082bbe3f412423e6b19232352f4d64f9aca3913cb46318d3ed"), "&aExotic Garden - Food"));
+        drinksItemGroup = new SubItemGroup(new NamespacedKey(this, "drinks"), nestedItemGroup, CustomItemStack.create(SkullCreator.skullFromHash("2a8f1f70e85825607d28edce1a2ad4506e732b4a5345a5ea6e807c4b313e88"), "&aExotic Garden - Drinks"));
         magicalItemGroup = new SubItemGroup(new NamespacedKey(this, "magical_crops"), nestedItemGroup, CustomItemStack.create(Material.BLAZE_POWDER, "&5Exotic Garden - Magical Plants"));
 
         kitchen = new Kitchen(this, miscItemGroup);
