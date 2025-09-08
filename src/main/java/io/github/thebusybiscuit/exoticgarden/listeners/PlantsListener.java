@@ -305,7 +305,8 @@ public class PlantsListener implements Listener {
                 dropFruitFromTree(e.getBlock());
             }
 
-            if (e.getBlock().getType() == Material.GRASS) {
+            Material blockType = e.getBlock().getType();
+            if ( blockType.equals(Material.SHORT_GRASS) || blockType.equals(Material.TALL_GRASS) || blockType.equals(Material.TALL_DRY_GRASS) || blockType.equals(Material.SHORT_DRY_GRASS)) {
                 if (!ExoticGarden.getGrassDrops().keySet().isEmpty() && e.getPlayer().getGameMode() != GameMode.CREATIVE) {
                     Random random = ThreadLocalRandom.current();
 
@@ -390,7 +391,7 @@ public class PlantsListener implements Listener {
 
             if (item instanceof BonemealableItem && ((BonemealableItem) item).isBonemealDisabled()) {
                 e.setCancelled(true);
-                b.getWorld().spawnParticle(Particle.VILLAGER_ANGRY, b.getLocation().clone().add(0.5, 0, 0.5), 4);
+                b.getWorld().spawnParticle(Particle.ANGRY_VILLAGER, b.getLocation().clone().add(0.5, 0, 0.5), 4);
                 b.getWorld().playSound(b.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
             }
         }
